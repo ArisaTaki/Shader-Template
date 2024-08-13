@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./styles.module.css";
-import Experience from "@/Experience/Experience";
+import useApplyShader from "@/hooks/useApplyShader";
 
 const Home: React.FC = () => {
-  useEffect(() => {
-    new Experience("#home");
-  }, []);
+  useApplyShader("#home");
   return (
     <div id="home" className={styles["home"]}>
       Home
