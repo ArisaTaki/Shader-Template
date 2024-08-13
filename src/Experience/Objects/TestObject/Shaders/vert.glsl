@@ -4,9 +4,10 @@ uniform float iTime;
 uniform vec3 iResolution;
 uniform vec4 iMouse;
 varying vec2 vertexUv;
+uniform float uDistort;
 vec3 distort(vec3 p){
     float noise=cnoise(p+iTime);
-    p+=noise*normal*.3;
+    p+=noise*normal*.3*uDistort;
     return p;
 }
 

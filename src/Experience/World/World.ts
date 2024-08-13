@@ -2,10 +2,12 @@ import * as kokomi from "kokomi.js";
 import TestObject from "../Objects/TestObject/TestObject";
 import ObjectEnum from "../ObjectEnum";
 import BaseObject from "../Objects/BaseObject/BaseObject";
+import Experience from "../Experience";
 export default class World extends kokomi.Component {
+  declare base: Experience;
   testObject?: TestObject;
   baseObject?: BaseObject;
-  constructor(base: kokomi.Base, objectEnum?: ObjectEnum) {
+  constructor(base: Experience, objectEnum?: ObjectEnum) {
     super(base);
     switch (objectEnum) {
       case ObjectEnum.TestObject:
@@ -15,6 +17,7 @@ export default class World extends kokomi.Component {
       case ObjectEnum.BaseObject:
         this.baseObject = new BaseObject(this.base);
         this.baseObject.addExisting();
+        break;
     }
   }
 }
