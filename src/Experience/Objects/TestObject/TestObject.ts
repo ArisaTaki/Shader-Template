@@ -1,5 +1,7 @@
 import * as THREE from "three";
 import * as kokomi from "kokomi.js";
+import testObjectVertexShader from "./Shaders/vert.glsl";
+import testObjectFragmentShader from "./Shaders/frag.glsl";
 
 export default class TestObject extends kokomi.Component {
   material: THREE.ShaderMaterial;
@@ -14,28 +16,8 @@ export default class TestObject extends kokomi.Component {
 
     const geometry = new THREE.SphereGeometry(2, 64, 64);
     const material = new THREE.ShaderMaterial({
-      vertexShader: /* glsl */ `
-        uniform float iTime;
-        uniform vec3 iResolution;
-        uniform vec4 iMouse;
-        varying vec2 vertexUv;
-        void main(){
-          vertexUv = uv;
-          vec3 p = position;
-            gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.);
-        }
-      `,
-      fragmentShader: /* glsl */ `
-        uniform float iTime;
-        uniform vec3 iResolution;
-        uniform vec4 iMouse;
-        varying vec2 vertexUv;
-        void main() {
-          vec2 uv = vertexUv;
-          gl_FragColor = vec4(uv, 0., 1.);
-
-        }
-      `,
+      vertexShader: testObjectVertexShader,
+      fragmentShader: testObjectFragmentShader,
     });
     this.material = material;
     const mesh = new THREE.Mesh(geometry, material);
