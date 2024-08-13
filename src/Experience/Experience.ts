@@ -23,8 +23,6 @@ export default class Experience extends kokomi.Base {
 
     new kokomi.OrbitControls(this);
 
-    window.experience = this;
-
     // 使用配置初始化 World
     this.world = new World(this, config?.objectEnum);
   }

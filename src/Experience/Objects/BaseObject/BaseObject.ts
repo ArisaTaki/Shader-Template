@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import * as kokomi from "kokomi.js";
 
-export default class TestObject extends kokomi.Component {
+export default class BaseObject extends kokomi.Component {
   material: THREE.ShaderMaterial;
   mesh: THREE.Mesh<
     THREE.SphereGeometry,
@@ -32,7 +32,7 @@ export default class TestObject extends kokomi.Component {
         varying vec2 vertexUv;
         void main() {
           vec2 uv = vertexUv;
-          gl_FragColor = vec4(uv, 0., 1.);
+          gl_FragColor = vec4(1., 1., 0., 1.);
 
         }
       `,
