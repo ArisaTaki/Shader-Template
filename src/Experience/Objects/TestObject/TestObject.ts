@@ -36,10 +36,11 @@ export default class TestObject extends kokomi.Component {
     material.uniforms = {
       ...material.uniforms,
       ...uj.shadertoyUniforms,
+      ...params,
     };
     const debug = this.base.debug;
     if (debug.active) {
-      const debugFolder = debug.ui?.addFolder("TestObject");
+      const debugFolder = debug.ui?.addFolder("testObject");
       debugFolder
         ?.add(params.uDistort, "value")
         .min(0)
