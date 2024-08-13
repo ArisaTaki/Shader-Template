@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./styles.module.css";
 import useApplyShader from "@/hooks/useApplyShader";
+import ObjectEnum from "@/Experience/World/ObjectEnum";
 
 const Home: React.FC = () => {
-  useApplyShader("#home");
+  useApplyShader({ id: "#home", objectEnum: ObjectEnum.TestObject });
   return (
     <div id="home" className={styles["home"]}>
       Home

@@ -1,14 +1,10 @@
-import Experience from "@/Experience/Experience";
+import Experience, { ExperienceConfig } from "@/Experience/Experience";
 import { useEffect } from "react";
 
-export interface IUseApplyShader {
-  id: string;
-}
-
-const useApplyShader = (id: string) => {
+const useApplyShader = (config: ExperienceConfig) => {
   useEffect(() => {
-    new Experience(id);
-  }, [id]);
+    new Experience(config);
+  }, [config]);
 };
 
 export default useApplyShader;
