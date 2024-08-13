@@ -2,7 +2,7 @@ import Router from "@/router";
 
 function App() {
   return (
-    <div>
+    <div id="sketch">
       <Router />
     </div>
   );
