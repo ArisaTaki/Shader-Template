@@ -1,7 +1,7 @@
 import * as kokomi from "kokomi.js";
 import World from "./World/World";
 import * as THREE from "three";
-import ObjectEnum from "./World/ObjectEnum";
+import ObjectEnum from "./ObjectEnum";
 
 export interface ExperienceConfig {
   id: string;
