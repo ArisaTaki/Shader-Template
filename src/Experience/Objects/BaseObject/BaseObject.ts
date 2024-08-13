@@ -36,6 +36,7 @@ export default class TestObject extends kokomi.Component {
     material.uniforms = {
       ...material.uniforms,
       ...uj.shadertoyUniforms,
+      ...params,
     };
     const debug = this.base.debug;
     if (debug.active) {
