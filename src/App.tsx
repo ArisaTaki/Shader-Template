@@ -1,11 +1,7 @@
 import Router from "@/router";
 
 function App() {
-  return (
-    <div id="sketch">
-      <Router />
-    </div>
-  );
+  return <Router />;
 }
 
 export default App;
