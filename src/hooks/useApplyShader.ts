@@ -1,9 +1,13 @@
 import Experience, { ExperienceConfig } from "@/Experience/Experience";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const useApplyShader = (config: ExperienceConfig) => {
+  const initialized = useRef(false);
   useEffect(() => {
-    new Experience(config);
+    if (!initialized.current) {
+      new Experience(config);
+      initialized.current = true; // 标记为已初始化
+    }
   }, [config]);
 };
 
