@@ -4,7 +4,7 @@ import TestObject from "../Objects/TestObject/TestObject";
 import ObjectEnum from "../ObjectEnum";
 import BaseObject from "../Objects/BaseObject/BaseObject";
 import Experience from "../Experience";
-import HomeStyles from "@/views/Home/styles.module.css";
+import LoadingStyles from "@/components/loadingComp/styles.module.css";
 export default class World extends kokomi.Component {
   // 将base定义为Experience类
   declare base: Experience;
@@ -22,7 +22,7 @@ export default class World extends kokomi.Component {
     this.testObject = new TestObject(this.base);
     this.testObject.addExisting();
   };
-  
+
   // 渲染Object的方法
   renderBaseObject = () => {
     this.baseObject = new BaseObject(this.base);
@@ -36,8 +36,8 @@ export default class World extends kokomi.Component {
     this.base.am.on("ready", () => {
       setTimeout(() => {
         document
-          .querySelector(`.${HomeStyles["loader-screen"]}`)
-          ?.classList.add(HomeStyles["hollow"]);
+          .querySelector(`.${LoadingStyles["loader-screen"]}`)
+          ?.classList.add(LoadingStyles["hollow"]);
         // 根据objectEnum决定渲染哪一个shader Object
         switch (objectEnum) {
           case ObjectEnum.TestObject:
