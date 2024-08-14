@@ -23,14 +23,18 @@ export default class Experience extends kokomi.Base {
 
     // 动态设置摄像机位置
     const cameraPosition = config?.cameraPosition || new THREE.Vector3(0, 0, 5);
+    // 把摄像机的位置设置给camera
     this.camera.position.copy(cameraPosition);
-
+    // 添加轨道控制
     new kokomi.OrbitControls(this);
 
+    // 挂载Experience类到全局
     window.experience = this;
 
+    // 挂载Debug类
     this.debug = new Debug();
 
+    // 挂载资源管理类
     this.am = new kokomi.AssetManager(this, resources);
 
     // 使用配置初始化 World

@@ -15,7 +15,7 @@ export default class TestObject extends kokomi.Component {
   uj: kokomi.UniformInjector;
   constructor(base: Experience) {
     super(base);
-
+    
     const params = {
       uDistort: {
         value: 1,
