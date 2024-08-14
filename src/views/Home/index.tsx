@@ -5,7 +5,7 @@ import ObjectEnum from "@/Experience/ObjectEnum";
 import LoadingComp from "@/components/loadingComp";
 
 const Home: React.FC = () => {
-  useApplyShader({ id: "#home", objectEnum: ObjectEnum.TestObject });
+  useApplyShader({ id: "#home", objectEnum: ObjectEnum.BaseObject });
   return (
     <>
       <LoadingComp />
