@@ -1,5 +1,5 @@
 import Experience from "@/Experience/Experience";
-import TestObject from "@/Experience/Objects/TestObject/TestObject";
+import TestObject from "@/Experience/Objects/TestObject";
 import * as kokomi from "kokomi.js";
 import * as THREE from "three";
 

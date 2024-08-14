@@ -1,5 +1,5 @@
 import Experience from "@/Experience/Experience";
-import BaseObject from "@/Experience/Objects/BaseObject/BaseObject";
+import BaseObject from "@/Experience/Objects/BaseObject";
 import * as kokomi from "kokomi.js";
 
 export default class BaseWorld extends kokomi.Component {

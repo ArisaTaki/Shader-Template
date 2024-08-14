@@ -3,7 +3,7 @@ import World from "./World/World";
 import * as THREE from "three";
 import ObjectEnum from "./ObjectEnum";
 import Debug from "./Debug/Debug";
-import { resources } from "./Resources/Resources";
+import { resources } from "./Resources";
 
 export interface ExperienceConfig {
   id: string;
