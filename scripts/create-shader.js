@@ -196,28 +196,20 @@ export default class ${formattedName}World extends kokomi.Component {
   let mainWorldIndexContent = fs.readFileSync(mainWorldIndexPath, "utf8");
 
   // 添加 switch case 语句
-  const switchCaseStatement = `  case ObjectEnum.${formattedName}Object:
+  const switchCaseStatement = `
+          case ObjectEnum.${formattedName}Object: {
+            const { default: ${formattedName}World } = await import("./${formattedName}World");
             new ${formattedName}World(this.base);
-            break;`;
+            break;
+          }`;
 
+  // 使用正则表达式匹配 switch 语句的最后一个 case 之前的内容
   mainWorldIndexContent = mainWorldIndexContent.replace(
-    /switch \(objectEnum\) {([\s\S]*?)}/,
-    (match, p1) => {
-      return `switch (objectEnum) {${p1}${switchCaseStatement}\n        }`;
+    /(switch \(objectEnum\) {)([\s\S]*?)(\s*case ObjectEnum.[^:]*:)/,
+    (match, p1, p2, p3) => {
+      return `${p1}${p2}${switchCaseStatement}${p3}`;
     }
   );
-
-  // 添加 import 语句到现有 import 语句的末尾
-  const importStatement = `import ${formattedName}World from "./${formattedName}World";\n\n`;
-
-  const importEndIndex = mainWorldIndexContent.lastIndexOf("import");
-  const nextLineAfterImport =
-    mainWorldIndexContent.indexOf("\n", importEndIndex) + 1;
-  mainWorldIndexContent = [
-    mainWorldIndexContent.slice(0, nextLineAfterImport),
-    importStatement,
-    mainWorldIndexContent.slice(nextLineAfterImport),
-  ].join("");
 
   // 创建 Object 目录及其下的 Shaders 目录和 index.ts
   fs.ensureDirSync(shadersDir);
