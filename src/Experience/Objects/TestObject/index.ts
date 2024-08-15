@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import * as kokomi from "kokomi.js";
-import testObjectVertexShader from "./Shaders/vert.glsl";
-import testObjectFragmentShader from "./Shaders/frag.glsl";
+import vertexShader from "./Shaders/vert.glsl";
+import fFragmentShader from "./Shaders/frag.glsl";
 import Experience from "@/Experience/Experience";
 
 export default class TestObject extends kokomi.Component {
@@ -15,7 +15,7 @@ export default class TestObject extends kokomi.Component {
   uj: kokomi.UniformInjector;
   constructor(base: Experience) {
     super(base);
-    
+
     const params = {
       uDistort: {
         value: 1,
@@ -24,8 +24,8 @@ export default class TestObject extends kokomi.Component {
 
     const geometry = new THREE.SphereGeometry(2, 64, 64);
     const material = new THREE.ShaderMaterial({
-      vertexShader: testObjectVertexShader,
-      fragmentShader: testObjectFragmentShader,
+      vertexShader: vertexShader,
+      fragmentShader: fFragmentShader,
     });
     this.material = material;
     const mesh = new THREE.Mesh(geometry, material);

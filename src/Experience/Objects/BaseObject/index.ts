@@ -1,10 +1,10 @@
 import * as THREE from "three";
 import * as kokomi from "kokomi.js";
-import testObjectVertexShader from "./Shaders/vert.glsl";
-import testObjectFragmentShader from "./Shaders/frag.glsl";
+import vertexShader from "./Shaders/vert.glsl";
+import fragmentShader from "./Shaders/frag.glsl";
 import Experience from "@/Experience/Experience";
 
-export default class TestObject extends kokomi.Component {
+export default class BaseObject extends kokomi.Component {
   declare base: Experience;
   material: THREE.ShaderMaterial;
   mesh: THREE.Mesh<
@@ -24,8 +24,8 @@ export default class TestObject extends kokomi.Component {
 
     const geometry = new THREE.SphereGeometry(2, 64, 64);
     const material = new THREE.ShaderMaterial({
-      vertexShader: testObjectVertexShader,
-      fragmentShader: testObjectFragmentShader,
+      vertexShader: vertexShader,
+      fragmentShader: fragmentShader,
     });
     this.material = material;
     const mesh = new THREE.Mesh(geometry, material);
