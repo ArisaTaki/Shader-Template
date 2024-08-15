@@ -19,6 +19,11 @@ export default class World extends kokomi.Component {
 
         // 根据objectEnum决定动态导入并渲染对应的shader Object
         switch (objectEnum) {
+          case ObjectEnum.ImageObject: {
+            const { default: ImageWorld } = await import("./ImageWorld");
+            new ImageWorld(this.base);
+            break;
+          }
           case ObjectEnum.TestObject: {
             const { default: TestWorld } = await import("./TestWorld");
             new TestWorld(this.base);
