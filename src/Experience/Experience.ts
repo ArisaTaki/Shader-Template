@@ -11,6 +11,8 @@ export interface ExperienceConfig {
   objectEnum: ObjectEnum;
   // 先设定一个设置摄像机位置的参数
   cameraPosition?: THREE.Vector3;
+  // 是否选择使用kokomi的轨道控制
+  useKokomiOrbitControls?: boolean;
 }
 
 export default class Experience extends kokomi.Base {
@@ -21,13 +23,18 @@ export default class Experience extends kokomi.Base {
   constructor(config: ExperienceConfig) {
     super(config.id);
 
-    // 动态设置摄像机位置
-    const cameraPosition = config?.cameraPosition || new THREE.Vector3(0, 0, 5);
-    // 把摄像机的位置设置给camera
-    this.camera.position.copy(cameraPosition);
-    // 添加轨道控制
-    new kokomi.OrbitControls(this);
-
+    if (!config.useKokomiOrbitControls) {
+      // 动态设置摄像机位置
+      const cameraPosition =
+        config?.cameraPosition || new THREE.Vector3(0, 0, 5);
+      // 把摄像机的位置设置给camera
+      this.camera.position.copy(cameraPosition);
+      // 添加轨道控制
+      new kokomi.OrbitControls(this);
+    } else {
+      const screenCamera = new kokomi.ScreenCamera(this);
+      screenCamera.addExisting();
+    }
     // 挂载Experience类到全局
     window.experience = this;
 
