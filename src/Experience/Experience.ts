@@ -1,8 +1,8 @@
 import * as kokomi from "kokomi.js";
-import World from "./World/World";
+import World from "./World";
 import * as THREE from "three";
 import ObjectEnum from "./ObjectEnum";
-import Debug from "./Debug/Debug";
+import Debug from "./Debug";
 import { resources } from "./Resources";
 
 export interface ExperienceConfig {
