@@ -176,9 +176,9 @@ export default class ${formattedName}World extends kokomi.Component {
   // 将base定义为Experience类
   declare base: Experience;
   ${formattedName.toLowerCase()}Object?: ${formattedName}Object;
-  render${formattedName}Object = () => {
+  render${formattedName}Object = async () => {
     this.${formattedName.toLowerCase()}Object = new ${formattedName}Object(this.base);
-    this.${formattedName.toLowerCase()}Object.addExisting();
+    await this.${formattedName.toLowerCase()}Object.addExisting();
   };
 
   constructor(base: Experience) {
