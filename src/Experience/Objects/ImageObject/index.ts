@@ -10,6 +10,7 @@ export default class ImageObject extends kokomi.Component {
   ig: kokomi.InfiniteGallery;
   ws: kokomi.WheelScroller;
   params: { uDistortX: { value: number }; uDistortZ: { value: number } };
+  dd: kokomi.DragDetecter;
   constructor(base: Experience) {
     super(base);
 
@@ -59,6 +60,12 @@ export default class ImageObject extends kokomi.Component {
 
     this.ws = new kokomi.WheelScroller();
     this.ws.listenForScroll();
+
+    this.dd = new kokomi.DragDetecter(this.base);
+    this.dd.detectDrag();
+    this.dd.on("drag", (delta: { x: number; y: number }) => {
+      this.ws.scroll.target -= delta[this.ig.dimensionType] * 2;
+    });
   }
 
   update() {
