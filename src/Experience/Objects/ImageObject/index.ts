@@ -4,6 +4,7 @@ import ImageStyles from "@/views/ImageShader/styles.module.css";
 import vertexShader from "./Shaders/vert.glsl";
 import fragmentShader from "./Shaders/frag.glsl";
 import { ShaderMaterial } from "three";
+import Postprocessing from "./Postprocessing";
 
 export default class ImageObject extends kokomi.Component {
   declare base: Experience;
@@ -11,6 +12,7 @@ export default class ImageObject extends kokomi.Component {
   ws: kokomi.WheelScroller;
   params: { uDistortX: { value: number }; uDistortZ: { value: number } };
   dd: kokomi.DragDetecter;
+  postprocessing: Postprocessing;
   constructor(base: Experience) {
     super(base);
 
@@ -66,6 +68,9 @@ export default class ImageObject extends kokomi.Component {
     this.dd.on("drag", (delta: { x: number; y: number }) => {
       this.ws.scroll.target -= delta[this.ig.dimensionType] * 2;
     });
+
+    this.postprocessing = new Postprocessing(this.base);
+    this.postprocessing.addExisting();
   }
 
   update() {
@@ -80,6 +85,9 @@ export default class ImageObject extends kokomi.Component {
       (maku.mesh.material as ShaderMaterial).uniforms.uDistortZ.value =
         this.params.uDistortZ.value;
     });
+
+    this.postprocessing.ce.customPass.material.uniforms.uRGBShift.value =
+      Math.abs(this.ws.scroll.delta) * 0.0004;
   }
 
   async addExisting() {
