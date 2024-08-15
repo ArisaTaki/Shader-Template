@@ -1,3 +1,13 @@
+# 2024年8月15日更新
+
+建立了一个 script 可以一键生成 Shader 的一套文件，之后直接编写就好：
+
+> npm run create
+
+![](https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/79e8b7c66a6dcfba8870f5822e64661b.png)
+
+---
+
 # 前言
 
 历经几个月，我已经学习了不少的`Shader`的知识要点，从现在开始我来整点实际上的项目。
