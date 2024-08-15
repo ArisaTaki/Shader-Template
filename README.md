@@ -1,8 +1,6 @@
 # 前言
 
-历经几个月，我已经学习了不少的`Shader`的知识要点，从现在开始后来整点实际上的项目。
-
-我们需要组织我们的项目。
+历经几个月，我已经学习了不少的`Shader`的知识要点，从现在开始我来整点实际上的项目。
 
 我挑选的是`Vite + React`的组合方式。这个组合对于我现在的技能熟练度是最高的。
 
@@ -10,7 +8,7 @@
 
 > git clone -b base git@github.com:ArisaTaki/Shader-Template.git
 
-之后：
+我们直接从 Shader 部分开始，项目的启动就是前端的那一套，进入到目录内，然后
 
 > npm i
 > npm run dev
@@ -23,15 +21,15 @@
 他们的作用分别是：
 
 - Experience：导出一个`Experience`类，继承了`kokomi.js`的`Base`类，找到传入的`id`,并且挂载上去
-- ObjectEnum：枚举，写了几个不同的`Object`，就加入几个项，用于区分给接下来的`World`类渲染什么内容设计的
+- ObjectEnum：枚举，写了几个不同的`Object`，就加入几个项，用于区分给接下来的`World`类渲染什么内容设计的。
 
 ```typescript
 import * as kokomi from "kokomi.js";
-import World from "./World/World";
+import World from "./World";
 import * as THREE from "three";
 import ObjectEnum from "./ObjectEnum";
-import Debug from "./Debug/Debug";
-import { resources } from "./Resources/Resources";
+import Debug from "./Debug";
+import { resources } from "./Resources";
 
 export interface ExperienceConfig {
   id: string;
@@ -86,39 +84,18 @@ export default ObjectEnum;
 
 `World`负责创建场景内的所有物体。
 
-在`Experience`目录下面创建`World`目录，并且在里面创建`World.ts`文件
+在`Experience`目录下面创建`World`目录，并且在里面创建`index.ts`文件，这就是对外导出的内容了，其中也包括了对内的其他`World`的集成。
 
 ```ts
 import * as kokomi from "kokomi.js";
-import * as THREE from "three";
-import TestObject from "../Objects/TestObject/TestObject";
 import ObjectEnum from "../ObjectEnum";
-import BaseObject from "../Objects/BaseObject/BaseObject";
 import Experience from "../Experience";
-import HomeStyles from "@/views/Home/styles.module.css";
+import LoadingStyles from "@/components/loadingComp/styles.module.css";
+import BaseWorld from "./BaseWorld";
+import TestWorld from "./TestWorld";
 export default class World extends kokomi.Component {
   // 将base定义为Experience类
   declare base: Experience;
-  // 这两个是我们自定义的Object
-  testObject?: TestObject;
-  baseObject?: BaseObject;
-
-  // 渲染Object的方法
-  renderTestObject = () => {
-    // 这里是定义材质的地方，后续会讲到
-    const skyBox = this.base.am.items["skyBox"];
-    skyBox.mapping = THREE.EquirectangularReflectionMapping;
-    this.base.scene.background = skyBox;
-
-    this.testObject = new TestObject(this.base);
-    this.testObject.addExisting();
-  };
-
-  // 渲染Object的方法
-  renderBaseObject = () => {
-    this.baseObject = new BaseObject(this.base);
-    this.baseObject.addExisting();
-  };
 
   constructor(base: Experience, objectEnum?: ObjectEnum) {
     super(base);
@@ -127,27 +104,30 @@ export default class World extends kokomi.Component {
     this.base.am.on("ready", () => {
       setTimeout(() => {
         document
-          .querySelector(`.${HomeStyles["loader-screen"]}`)
-          ?.classList.add(HomeStyles["hollow"]);
+          .querySelector(`.${LoadingStyles["loader-screen"]}`)
+          ?.classList.add(LoadingStyles["hollow"]);
         // 根据objectEnum决定渲染哪一个shader Object
         switch (objectEnum) {
           case ObjectEnum.TestObject:
-            this.renderTestObject();
+            new TestWorld(this.base);
             break;
           case ObjectEnum.BaseObject:
-            this.renderBaseObject();
+            new BaseWorld(this.base);
             break;
         }
-      }, 3000);
+      }, 2000);
     });
   }
 }
 ```
 
+`World`目录大概是这样的：
+![](https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/9d68b72ffa712851f3ae9135c4bb915a.png)
+
 ## Objects
 
 这是用于装填新建`Object`的地方，这里就是我们自定义的内容了。
-![](https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/c49c827b1142e87a7117715a237a10db.png)
+![](https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/ef77b74839adbb9d23d024cc2a1a76db.png)
 
 这里面的配置就是专门的`Object`，其中有本体的`ts`文件，之后就是`Shaders`文件夹，用于存放顶点着色器和片元着色器。
 
@@ -308,7 +288,7 @@ const material = new THREE.ShaderMaterial({
 
 > npm i lil-gui
 
-在`Experience`目录下，新建`Debug`目录。在其中建立新的文件`Debug.ts`
+在`Experience`目录下，新建`Debug`目录。在其中建立新的文件`index.ts`
 
 ```ts
 import * as dat from "lil-gui";
@@ -383,6 +363,19 @@ export const resources: kokomi.ResourceItem[] = [
 ];
 ```
 
-因为搭建模板的细节过多，本文章的重点其实是是贴出来这个项目的仓库地址。。。所以更多的搭建过程都被细化了，希望大家能够直接访问项目仓库代码进行查阅。
+这里贴一张可供下载的天空盒图片：[下载地址](https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/51vjRBsLCuiT2dW.png)
+
+按照之前已经贴出来的代码，在资源加载之后，就能得到完整的贴图了。
+
+出于前端工作的习惯，给资源加载之前填上了一些加载动画的效果，不作过多解释，这不是这次学习的重点。
+
+我们来看一下这个模板之下的第一个`web shader`的效果吧~
+
+![](https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/iShot_2024-08-13_22.03.44.gif)
+
+因为搭建模板的细节过多，本文章的重点其实是是贴出来这个项目的仓库地址。。。所以更多的搭建过程都被细化了，希望大家能够直接访问项目仓库代码进行查阅：
+
+项目地址：[我是地址](https://github.com/ArisaTaki/Shader-Template/tree/feature/home)
+
 
 在这里特别感谢[alphardex](https://github.com/alphardex)桑的Kokomi仓库，真的给到了很多的帮助，帮助我完成了这个基于`react`+`vite`的基础模板的搭建。非常感谢！
