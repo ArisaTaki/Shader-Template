@@ -196,7 +196,7 @@ export default class ${formattedName}World extends kokomi.Component {
   let mainWorldIndexContent = fs.readFileSync(mainWorldIndexPath, "utf8");
 
   // 添加 switch case 语句
-  const switchCaseStatement = `case ObjectEnum.${formattedName}Object:
+  const switchCaseStatement = `  case ObjectEnum.${formattedName}Object:
             new ${formattedName}World(this.base);
             break;`;
 
@@ -244,7 +244,7 @@ export default class ${formattedName}World extends kokomi.Component {
   const enumBody = objectEnumMatch ? objectEnumMatch[1] : "";
   const currentEnumCount = (enumBody.match(/,/g) || []).length;
 
-  const newEnumValue = `${formattedName}Object = ${currentEnumCount},`;
+  const newEnumValue = `  ${formattedName}Object = ${currentEnumCount},`;
 
   const updatedObjectEnumContent = objectEnumContent.replace(
     /ObjectEnum\s*{([\s\S]*?)}/,
