@@ -12,10 +12,6 @@ export default class World extends kokomi.Component {
 
     // 加载好材质之后进行的行为
     this.base.am.on("ready", async () => {
-      document
-        .querySelector(`.${LoadingStyles["loader-screen"]}`)
-        ?.classList.add(LoadingStyles["hollow"]);
-
       // 根据objectEnum决定动态导入并渲染对应的shader Object
       switch (objectEnum) {
         case ObjectEnum.TestObject: {
@@ -29,6 +25,10 @@ export default class World extends kokomi.Component {
           break;
         }
       }
+
+      document
+        .querySelector(`.${LoadingStyles["loader-screen"]}`)
+        ?.classList.add(LoadingStyles["hollow"]);
     });
   }
 }
