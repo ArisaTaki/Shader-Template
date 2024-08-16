@@ -39,7 +39,16 @@ export default class ImageObject extends kokomi.Component {
         uVelocity: {
           value: 0,
         },
+        uOpacity: {
+          value: 1,
+        },
+        uProgress: {
+          value: 0,
+        },
         ...params,
+      },
+      materialParams: {
+        transparent: true,
       },
     });
 
