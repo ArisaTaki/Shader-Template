@@ -17,103 +17,97 @@ const Home: React.FC = () => {
       <div className={styles["gallery"]}>
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000001.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000001.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000002.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000002.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000003.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000003.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000004.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000004.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000005.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000005.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000006.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000006.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000007.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000007.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000008.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000008.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000009.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000009.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000010.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000010.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000011.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000011.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000012.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000012.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000013.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000014.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000014.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000015.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000015.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000016.webp"
           crossOrigin="anonymous"
           alt=""
         />
         <img
           className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000016.jpg"
-          crossOrigin="anonymous"
-          alt=""
-        />
-        <img
-          className={styles["gallery-item"]}
-          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000017.jpg"
+          src="https://cdn.jsdelivr.net/gh/ArisaTaki/MyBlogPic@image/img/000017.webp"
           crossOrigin="anonymous"
           alt=""
         />

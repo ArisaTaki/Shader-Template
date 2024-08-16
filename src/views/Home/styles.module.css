@@ -24,3 +24,7 @@
   height: 60vh;
   opacity: 0;
 }
+
+.gallery-item.transparent {
+  pointer-events: none; /* 禁用点击事件 */
+}
