@@ -11,26 +11,24 @@ export default class World extends kokomi.Component {
     super(base);
 
     // 加载好材质之后进行的行为
-    this.base.am.on("ready", () => {
-      setTimeout(async () => {
-        document
-          .querySelector(`.${LoadingStyles["loader-screen"]}`)
-          ?.classList.add(LoadingStyles["hollow"]);
+    this.base.am.on("ready", async () => {
+      document
+        .querySelector(`.${LoadingStyles["loader-screen"]}`)
+        ?.classList.add(LoadingStyles["hollow"]);
 
-        // 根据objectEnum决定动态导入并渲染对应的shader Object
-        switch (objectEnum) {
-          case ObjectEnum.TestObject: {
-            const { default: TestWorld } = await import("./TestWorld");
-            new TestWorld(this.base);
-            break;
-          }
-          case ObjectEnum.BaseObject: {
-            const { default: BaseWorld } = await import("./BaseWorld");
-            new BaseWorld(this.base);
-            break;
-          }
+      // 根据objectEnum决定动态导入并渲染对应的shader Object
+      switch (objectEnum) {
+        case ObjectEnum.TestObject: {
+          const { default: TestWorld } = await import("./TestWorld");
+          new TestWorld(this.base);
+          break;
         }
-      }, 2000);
+        case ObjectEnum.BaseObject: {
+          const { default: BaseWorld } = await import("./BaseWorld");
+          new BaseWorld(this.base);
+          break;
+        }
+      }
     });
   }
 }
