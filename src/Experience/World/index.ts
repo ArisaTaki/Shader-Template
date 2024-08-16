@@ -9,31 +9,25 @@ export default class World extends kokomi.Component {
 
   constructor(base: Experience, objectEnum?: ObjectEnum) {
     super(base);
-
     // 加载好材质之后进行的行为
-    this.base.am.on("ready", async () => {
+    const render = async () => {
       // 根据objectEnum决定动态导入并渲染对应的shader Object
+      let imageWorldInstance;
       switch (objectEnum) {
         case ObjectEnum.ImageObject: {
           const { default: ImageWorld } = await import("./ImageWorld");
-          new ImageWorld(this.base);
-          break;
-        }
-        case ObjectEnum.TestObject: {
-          const { default: TestWorld } = await import("./TestWorld");
-          new TestWorld(this.base);
-          break;
-        }
-        case ObjectEnum.BaseObject: {
-          const { default: BaseWorld } = await import("./BaseWorld");
-          new BaseWorld(this.base);
+          imageWorldInstance = new ImageWorld(this.base);
           break;
         }
       }
 
+      if (imageWorldInstance) {
+        await imageWorldInstance.imageObject?.addExisting();
+      }
       document
         .querySelector(`.${LoadingStyles["loader-screen"]}`)
         ?.classList.add(LoadingStyles["hollow"]);
-    });
+    };
+    render();
   }
 }

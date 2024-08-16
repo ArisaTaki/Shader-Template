@@ -1,6 +1,6 @@
 import Experience from "@/Experience/Experience";
 import * as kokomi from "kokomi.js";
-import ImageStyles from "@/views/ImageShader/styles.module.css";
+import ImageStyles from "@/views/Home/styles.module.css";
 import vertexShader from "./Shaders/vert.glsl";
 import fragmentShader from "./Shaders/frag.glsl";
 import { ShaderMaterial } from "three";

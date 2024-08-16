@@ -1,7 +1,5 @@
 const enum ObjectEnum {
-  TestObject = 0,
-  BaseObject = 1,
-  ImageObject = 2,
+  ImageObject = 0,
 }
 
 export default ObjectEnum;

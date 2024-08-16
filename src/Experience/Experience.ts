@@ -3,7 +3,6 @@ import World from "./World";
 import * as THREE from "three";
 import ObjectEnum from "./ObjectEnum";
 import Debug from "./Debug";
-import { resources } from "./Resources";
 
 export interface ExperienceConfig {
   id: string;
@@ -18,7 +17,6 @@ export interface ExperienceConfig {
 export default class Experience extends kokomi.Base {
   world: World;
   debug: Debug;
-  am: kokomi.AssetManager;
 
   constructor(config: ExperienceConfig) {
     super(config.id);
@@ -40,9 +38,6 @@ export default class Experience extends kokomi.Base {
 
     // 挂载Debug类
     this.debug = new Debug();
-
-    // 挂载资源管理类
-    this.am = new kokomi.AssetManager(this, resources);
 
     // 使用配置初始化 World
     this.world = new World(this, config?.objectEnum);
