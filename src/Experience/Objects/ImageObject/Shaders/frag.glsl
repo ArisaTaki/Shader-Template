@@ -3,10 +3,11 @@ uniform vec3 iResolution;
 uniform vec4 iMouse;
 
 uniform sampler2D uTexture;
-uniform vec2 uMediaSize;
-uniform float uOpacity;
 
 varying vec2 vUv;
+
+uniform vec2 uMediaSize;
+uniform float uOpacity;
 
 vec2 cover(vec2 s,vec2 i,vec2 uv){
     float rs=s.x/s.y;
@@ -16,7 +17,6 @@ vec2 cover(vec2 s,vec2 i,vec2 uv){
     uv=uv*s/new+offset;
     return uv;
 }
-
 
 void main(){
     vec2 uv=vUv;
