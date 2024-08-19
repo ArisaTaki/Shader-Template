@@ -14,6 +14,11 @@ export default class World extends kokomi.Component {
     this.base.am.on("ready", async () => {
       // 根据objectEnum决定动态导入并渲染对应的shader Object
       switch (objectEnum) {
+          case ObjectEnum.ThreedObject: {
+            const { default: ThreedWorld } = await import("./ThreedWorld");
+            new ThreedWorld(this.base);
+            break;
+          }
         case ObjectEnum.TestObject: {
           const { default: TestWorld } = await import("./TestWorld");
           new TestWorld(this.base);
