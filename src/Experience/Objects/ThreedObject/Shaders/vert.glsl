@@ -9,9 +9,9 @@ varying float vNoise;
 varying vec3 vNormal;
 varying vec3 vWorldPosition;
 vec3 distort(vec3 p){
-    float noise=cnoise(p+iTime);
-    vNoise=noise;
-    p+=noise*normal*.3*uDistort;
+    // float noise=cnoise(p+iTime);
+    // vNoise=noise;
+    // p+=noise*normal*.3*uDistort;
     return p;
 }
 

@@ -5,7 +5,15 @@ import ObjectEnum from "@/Experience/ObjectEnum";
 import LoadingComp from "@/components/loadingComp";
 
 const ThreeDShader: React.FC = () => {
-  useApplyShader({ id: "#threed", objectEnum: ObjectEnum.ThreedObject });
+  useApplyShader({
+    id: "#threed",
+    objectEnum: ObjectEnum.ThreedObject,
+    cameraPosition: {
+      x: 0,
+      y: 0,
+      z: 2.5,
+    },
+  });
 
   return (
     <>
