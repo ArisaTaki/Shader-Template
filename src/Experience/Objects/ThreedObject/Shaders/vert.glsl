@@ -15,12 +15,16 @@ vec3 distort(vec3 p){
     return p;
 }
 
+#include "../../../CommonShaders/fixNormal.glsl"
+
 void main(){
     vec3 p=position;
     vec3 dp=distort(p);
     gl_Position=projectionMatrix*modelViewMatrix*vec4(dp,1.);
 
     vertexUv=uv;
-    vNormal=(modelMatrix*vec4(normal,0.)).xyz;
+    vec3 fNormal = fixNormal(p,dp,normal, RADIUS/SEGMENTS);
+    // vNormal=(modelMatrix*vec4(normal,0.)).xyz;
+    vNormal = (modelMatrix * vec4(fNormal, 0.)).xyz;
     vWorldPosition=vec3(modelMatrix*vec4(dp,1.));
 }

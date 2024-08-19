@@ -22,10 +22,17 @@ export default class ThreedObject extends kokomi.Component {
       },
     };
 
-    const geometry = new THREE.SphereGeometry(2, 64, 64);
+    const RADIUS = 2.001;
+    const SEGMENTS = 64.001;
+
+    const geometry = new THREE.SphereGeometry(RADIUS, SEGMENTS, SEGMENTS);
     const material = new THREE.ShaderMaterial({
       vertexShader: vertexShader,
       fragmentShader: fragmentShader,
+      defines: {
+        RADIUS,
+        SEGMENTS,
+      },
     });
     this.material = material;
     const mesh = new THREE.Mesh(geometry, material);
