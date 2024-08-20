@@ -22,14 +22,23 @@ export default class ThreedObject extends kokomi.Component {
         value: 1,
       },
       uFrequency: {
-        value: 1,
+        value: 1.7,
+      },
+      uFresnelIntensity: {
+        value: 0.2,
+      },
+      uLightIntensity: {
+        value: 0.9,
+      },
+      uLight2Intensity: {
+        value: 0.9,
       },
     };
 
     const colorParams = {
-      themeColor: "#000000",
-      lightColor: "#ff0000",
-      lightColor2: "#00ff00",
+      themeColor: "#070618",
+      lightColor: "#4cc2e9",
+      lightColor2: "#9743fe",
     };
 
     this.base.scene.background = new THREE.Color(colorParams.themeColor);
@@ -103,6 +112,24 @@ export default class ThreedObject extends kokomi.Component {
         .onChange((val: THREE.ColorRepresentation) => {
           material.uniforms.uLightColor2.value = new THREE.Color(val);
         });
+      debugFolder
+        ?.add(params.uFresnelIntensity, "value")
+        .min(0)
+        .max(1)
+        .step(0.01)
+        .name("fresnelIntensity");
+      debugFolder
+        ?.add(params.uLightIntensity, "value")
+        .min(0)
+        .max(1)
+        .step(0.01)
+        .name("lightIntensity");
+      debugFolder
+        ?.add(params.uLight2Intensity, "value")
+        .min(0)
+        .max(1)
+        .step(0.01)
+        .name("light2Intensity");
     }
   }
   addExisting() {
