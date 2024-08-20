@@ -18,7 +18,7 @@ export default class ThreedObject extends kokomi.Component {
     super(base);
 
     const params = {
-      uDistort: {
+      uFrequency: {
         value: 1,
       },
     };
@@ -56,11 +56,11 @@ export default class ThreedObject extends kokomi.Component {
     if (debug.active) {
       const debugFolder = debug.ui?.addFolder("threedObject");
       debugFolder
-        ?.add(params.uDistort, "value")
+        ?.add(params.uFrequency, "value")
         .min(0)
-        .max(2)
+        .max(5)
         .step(0.01)
-        .name("distort");
+        .name("frequency");
     }
   }
   addExisting() {

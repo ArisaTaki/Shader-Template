@@ -5,12 +5,12 @@ uniform float iTime;
 uniform vec3 iResolution;
 uniform vec4 iMouse;
 varying vec2 vertexUv;
-uniform float uDistort;
+uniform float uFrequency;
 varying float vNoise;
 varying vec3 vNormal;
 varying vec3 vWorldPosition;
 vec3 distort(vec3 p){
-    float offset=cnoise(p);
+    float offset=cnoise(p / uFrequency + iTime * .5);
     float noise=sin((p.y + offset)*PI*12.);
     vNoise=noise;
     return p;
