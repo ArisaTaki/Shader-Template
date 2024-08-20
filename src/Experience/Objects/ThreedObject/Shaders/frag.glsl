@@ -26,7 +26,8 @@ void main() {
     vec3 lightColor=vec3(1.,0.,0.);
     vec3 lightPos=vec3(10.,10.,10.);
     float diff=max(dot(normal,normalize(lightPos-vWorldPosition)),0.);
-    col+=lightColor*diff;
+    // col+=lightColor*diff;
+    col=mix(col,lightColor,diff*fres);
     // col = vec3(vNoise);
     gl_FragColor = vec4(col, 1.);
 }
