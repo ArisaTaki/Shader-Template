@@ -1,4 +1,5 @@
 #include "/node_modules/lygia/generative/cnoise.glsl"
+#include "/node_modules/lygia/math/const.glsl"
 
 uniform float iTime;
 uniform vec3 iResolution;
@@ -10,7 +11,8 @@ varying vec3 vNormal;
 varying vec3 vWorldPosition;
 vec3 distort(vec3 p){
     // float noise=cnoise(p+iTime);
-    // vNoise=noise;
+    float noise=sin(p.y*PI*12.);
+    vNoise=noise;
     // p+=noise*normal*.3*uDistort;
     return p;
 }
