@@ -13,6 +13,7 @@ vec3 distort(vec3 p){
     float offset=cnoise(p / uFrequency + iTime * .5);
     float noise=sin((p.y + offset)*PI*12.);
     vNoise=noise;
+    p+=noise*normal*.01;
     return p;
 }
 

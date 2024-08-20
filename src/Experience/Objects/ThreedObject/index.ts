@@ -8,8 +8,8 @@ export default class ThreedObject extends kokomi.Component {
   declare base: Experience;
   material: THREE.ShaderMaterial;
   mesh: THREE.Mesh<
-    // THREE.SphereGeometry,
-    THREE.PlaneGeometry,
+    THREE.SphereGeometry,
+    // THREE.PlaneGeometry,
     THREE.ShaderMaterial,
     THREE.Object3DEventMap
   >;
@@ -26,13 +26,13 @@ export default class ThreedObject extends kokomi.Component {
     const RADIUS = 1.001;
     const SEGMENTS = 256.001;
 
-    // const geometry = new THREE.SphereGeometry(RADIUS, SEGMENTS, SEGMENTS);
-    const geometry = new THREE.PlaneGeometry(
-      RADIUS * 2,
-      RADIUS * 2,
-      SEGMENTS,
-      SEGMENTS
-    );
+    const geometry = new THREE.SphereGeometry(RADIUS, SEGMENTS, SEGMENTS);
+    // const geometry = new THREE.PlaneGeometry(
+    //   RADIUS * 2,
+    //   RADIUS * 2,
+    //   SEGMENTS,
+    //   SEGMENTS
+    // );
     const material = new THREE.ShaderMaterial({
       vertexShader: vertexShader,
       fragmentShader: fragmentShader,

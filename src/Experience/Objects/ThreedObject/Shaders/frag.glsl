@@ -17,7 +17,7 @@ void main() {
     // col = palette(vNoise, vec3(.5),vec3(.5),vec3(1.), vec3(0., .10, .20));
 
     vec3 viewDir = normalize(cameraPosition - vWorldPosition);
-    // col = fresnel(vec3(0.), normal, viewDir);
-    col = vec3(vNoise);
+    col = fresnel(vec3(0.), normal, viewDir);
+    // col = vec3(vNoise);
     gl_FragColor = vec4(col, 1.);
 }
