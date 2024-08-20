@@ -1,9 +1,11 @@
 #include "/node_modules/lygia/color/palette.glsl"
 #include "/node_modules/lygia/lighting/fresnel.glsl"
+#include "/node_modules/lygia/color/space.glsl"
 
 uniform float iTime;
 uniform vec3 iResolution;
 uniform vec4 iMouse;
+uniform vec3 uThemeColor;
 varying vec2 vertexUv;
 
 varying float vNoise;
@@ -17,7 +19,8 @@ void main() {
     // col = palette(vNoise, vec3(.5),vec3(.5),vec3(1.), vec3(0., .10, .20));
 
     vec3 viewDir = normalize(cameraPosition - vWorldPosition);
-    col = fresnel(vec3(0.), normal, viewDir);
+    col = fresnel(uThemeColor, normal, viewDir);
+    col = linear2gamma(col);
     // col = vec3(vNoise);
     gl_FragColor = vec4(col, 1.);
 }

@@ -26,6 +26,12 @@ export default class ThreedObject extends kokomi.Component {
       },
     };
 
+    const colorParams = {
+      themeColor: "#000000",
+    };
+
+    this.base.scene.background = new THREE.Color(colorParams.themeColor);
+
     const RADIUS = 1.001;
     const SEGMENTS = 256.001;
 
@@ -54,6 +60,9 @@ export default class ThreedObject extends kokomi.Component {
       ...material.uniforms,
       ...uj.shadertoyUniforms,
       ...params,
+      uThemeColor: {
+        value: new THREE.Color(colorParams.themeColor),
+      },
     };
     const debug = this.base.debug;
     if (debug.active) {
@@ -70,6 +79,12 @@ export default class ThreedObject extends kokomi.Component {
         .max(2)
         .step(0.01)
         .name("distort");
+      debugFolder
+        ?.addColor(colorParams, "themeColor")
+        .onChange((val: THREE.ColorRepresentation) => {
+          material.uniforms.uThemeColor.value = new THREE.Color(val);
+          this.base.scene.background = new THREE.Color(val);
+        });
     }
   }
   addExisting() {
