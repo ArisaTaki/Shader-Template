@@ -28,6 +28,8 @@ export default class ThreedObject extends kokomi.Component {
 
     const colorParams = {
       themeColor: "#000000",
+      lightColor: "#ff0000",
+      lightColor2: "#00ff00",
     };
 
     this.base.scene.background = new THREE.Color(colorParams.themeColor);
@@ -63,6 +65,12 @@ export default class ThreedObject extends kokomi.Component {
       uThemeColor: {
         value: new THREE.Color(colorParams.themeColor),
       },
+      uLightColor: {
+        value: new THREE.Color(colorParams.lightColor),
+      },
+      uLightColor2: {
+        value: new THREE.Color(colorParams.lightColor2),
+      },
     };
     const debug = this.base.debug;
     if (debug.active) {
@@ -84,6 +92,16 @@ export default class ThreedObject extends kokomi.Component {
         .onChange((val: THREE.ColorRepresentation) => {
           material.uniforms.uThemeColor.value = new THREE.Color(val);
           this.base.scene.background = new THREE.Color(val);
+        });
+      debugFolder
+        ?.addColor(colorParams, "lightColor")
+        .onChange((val: THREE.ColorRepresentation) => {
+          material.uniforms.uLightColor.value = new THREE.Color(val);
+        });
+      debugFolder
+        ?.addColor(colorParams, "lightColor2")
+        .onChange((val: THREE.ColorRepresentation) => {
+          material.uniforms.uLightColor2.value = new THREE.Color(val);
         });
     }
   }

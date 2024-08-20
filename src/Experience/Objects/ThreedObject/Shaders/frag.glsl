@@ -6,6 +6,8 @@ uniform float iTime;
 uniform vec3 iResolution;
 uniform vec4 iMouse;
 uniform vec3 uThemeColor;
+uniform vec3 uLightColor;
+uniform vec3 uLightColor2;
 varying vec2 vertexUv;
 
 varying float vNoise;
@@ -23,11 +25,11 @@ void main() {
     col = fres;
     col = linear2gamma(col);
 
-    vec3 lightColor=vec3(1.,0.,0.);
+    // vec3 lightColor=vec3(1.,0.,0.);
     vec3 lightPos=vec3(10.,10.,10.);
     float diff=max(dot(normal,normalize(lightPos-vWorldPosition)),0.);
     // col+=lightColor*diff;
-    col=mix(col,lightColor,diff*fres);
+    col=mix(col,uLightColor,diff*fres);
     // col = vec3(vNoise);
     gl_FragColor = vec4(col, 1.);
 }
