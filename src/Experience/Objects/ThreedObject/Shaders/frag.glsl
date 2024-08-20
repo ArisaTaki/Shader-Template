@@ -19,8 +19,14 @@ void main() {
     // col = palette(vNoise, vec3(.5),vec3(.5),vec3(1.), vec3(0., .10, .20));
 
     vec3 viewDir = normalize(cameraPosition - vWorldPosition);
-    col = fresnel(uThemeColor, normal, viewDir);
+    vec3 fres = fresnel(uThemeColor, normal, viewDir);
+    col = fres;
     col = linear2gamma(col);
+
+    vec3 lightColor=vec3(1.,0.,0.);
+    vec3 lightPos=vec3(10.,10.,10.);
+    float diff=max(dot(normal,normalize(lightPos-vWorldPosition)),0.);
+    col+=lightColor*diff;
     // col = vec3(vNoise);
     gl_FragColor = vec4(col, 1.);
 }
