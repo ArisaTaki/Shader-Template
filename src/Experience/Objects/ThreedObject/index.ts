@@ -40,6 +40,13 @@ export default class ThreedObject extends kokomi.Component {
       uLight2Intensity: {
         value: 0.9,
       },
+      bloomPassObj: {
+        value: {
+          strength: 0.9,
+          radius: 0.0,
+          threshold: 0.0,
+        },
+      },
     };
 
     const colorParams = {
@@ -57,9 +64,9 @@ export default class ThreedObject extends kokomi.Component {
     // 添加 UnrealBloomPass
     this.bloomPass = new UnrealBloomPass(
       new THREE.Vector2(window.innerWidth, window.innerHeight),
-      0.9, // 强度
-      0.0, // 半径
-      0.0 // 阈值
+      params.bloomPassObj.value.strength,
+      params.bloomPassObj.value.radius,
+      params.bloomPassObj.value.threshold
     );
     this.composer.addPass(renderPass);
 
@@ -160,6 +167,33 @@ export default class ThreedObject extends kokomi.Component {
         .max(1)
         .step(0.01)
         .name("light2Intensity");
+      debugFolder
+        ?.add(params.bloomPassObj.value, "strength")
+        .min(0)
+        .max(2)
+        .step(0.01)
+        .name("bloomStrength")
+        .onChange((val: number) => {
+          this.bloomPass.strength = val;
+        });
+      debugFolder
+        ?.add(params.bloomPassObj.value, "radius")
+        .min(0)
+        .max(2)
+        .step(0.01)
+        .name("bloomRadius")
+        .onChange((val: number) => {
+          this.bloomPass.radius = val;
+        });
+      debugFolder
+        ?.add(params.bloomPassObj.value, "threshold")
+        .min(0)
+        .max(1)
+        .step(0.01)
+        .name("bloomThreshold")
+        .onChange((val: number) => {
+          this.bloomPass.threshold = val;
+        });
     }
   }
   addExisting() {
