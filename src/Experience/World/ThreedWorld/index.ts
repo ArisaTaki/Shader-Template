@@ -14,5 +14,13 @@ export default class ThreedWorld extends kokomi.Component {
   constructor(base: Experience) {
     super(base);
     this.renderThreedObject();
+
+    const animate = () => {
+      requestAnimationFrame(animate);
+
+      this.threedObject?.update();
+    };
+
+    animate();
   }
 }

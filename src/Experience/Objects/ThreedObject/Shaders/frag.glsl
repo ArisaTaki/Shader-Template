@@ -47,7 +47,10 @@ void main() {
     col = mix(col, uLightColor2, diff2*fres*uLight2Intensity);
 
     // gama校正
-    col = linear2gamma(col);
+    // 把这里注释掉的原因是因为要使用UnrealBloomPass滤镜
+    // 依赖于线性空间的颜色数据来判断哪些像素是高亮的，进而决定光晕的强度和扩散。
+    // 如果在片元着色器中提前进行伽马校正，颜色会失去线性空间的特性，导致这些后处理效果无法正确工作。
+    // col = linear2gamma(col);
 
     // debug noise
     // col=vec3(vNoise);

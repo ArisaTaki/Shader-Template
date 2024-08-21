@@ -3,6 +3,11 @@ import * as kokomi from "kokomi.js";
 import vertexShader from "./Shaders/vert.glsl";
 import fragmentShader from "./Shaders/frag.glsl";
 import Experience from "@/Experience/Experience";
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
+import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js";
+import { GammaCorrectionShader } from "three/examples/jsm/shaders/GammaCorrectionShader.js";
 
 export default class ThreedObject extends kokomi.Component {
   declare base: Experience;
@@ -14,6 +19,8 @@ export default class ThreedObject extends kokomi.Component {
     THREE.Object3DEventMap
   >;
   uj: kokomi.UniformInjector;
+  composer: EffectComposer;
+  bloomPass: UnrealBloomPass;
   constructor(base: Experience) {
     super(base);
 
@@ -41,10 +48,33 @@ export default class ThreedObject extends kokomi.Component {
       lightColor2: "#9743fe",
     };
 
+    // 初始化 EffectComposer
+    this.composer = new EffectComposer(this.base.renderer);
+
+    // 创建 RenderPass
+    const renderPass = new RenderPass(this.base.scene, this.base.camera);
+
+    // 添加 UnrealBloomPass
+    this.bloomPass = new UnrealBloomPass(
+      new THREE.Vector2(window.innerWidth, window.innerHeight),
+      0.9, // 强度
+      0.0, // 半径
+      0.0 // 阈值
+    );
+    this.composer.addPass(renderPass);
+
+    this.composer.addPass(this.bloomPass);
+
+    // 添加 GammaCorrectionPass
+    const gammaCorrectionPass = new ShaderPass(GammaCorrectionShader);
+    this.composer.addPass(gammaCorrectionPass);
+
+    this.bloomPass.renderToScreen = true;
+
     this.base.scene.background = new THREE.Color(colorParams.themeColor);
 
     const RADIUS = 1.001;
-    const SEGMENTS = 256.001;
+    const SEGMENTS = 512.001;
 
     const geometry = new THREE.SphereGeometry(RADIUS, SEGMENTS, SEGMENTS);
     // const geometry = new THREE.PlaneGeometry(
@@ -137,5 +167,6 @@ export default class ThreedObject extends kokomi.Component {
   }
   update() {
     this.uj.injectShadertoyUniforms(this.material.uniforms);
+    this.composer.render();
   }
 }
