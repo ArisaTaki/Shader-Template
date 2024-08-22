@@ -40,11 +40,11 @@ export default class ThreedObject extends kokomi.Component {
     });
 
     this.onMouseOver = () => {
-      console.log("onMouseOver");
+      document.body.style.cursor = "pointer";
     };
 
     this.onMouseOut = () => {
-      console.log("onMouseOut");
+      document.body.style.cursor = "default";
     };
 
     const params = {
@@ -79,7 +79,7 @@ export default class ThreedObject extends kokomi.Component {
     };
 
     const RADIUS = 1.001;
-    const SEGMENTS = 512.001;
+    const SEGMENTS = 256.001;
 
     // 初始化 EffectComposer
     this.composer = new EffectComposer(this.base.renderer);
