@@ -21,8 +21,31 @@ export default class ThreedObject extends kokomi.Component {
   uj: kokomi.UniformInjector;
   composer: EffectComposer;
   bloomPass: UnrealBloomPass;
+  raycaster: THREE.Raycaster;
+  mouse: THREE.Vector2;
+  onMouseOver: () => void;
+  onMouseOut: () => void;
   constructor(base: Experience) {
     super(base);
+    this.raycaster = new THREE.Raycaster();
+    this.mouse = new THREE.Vector2();
+
+    const onMouseMove = (event: MouseEvent) => {
+      this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    };
+
+    window.addEventListener("mousemove", (event) => {
+      onMouseMove(event);
+    });
+
+    this.onMouseOver = () => {
+      console.log("onMouseOver");
+    };
+
+    this.onMouseOut = () => {
+      console.log("onMouseOut");
+    };
 
     const params = {
       uDistort: {
@@ -200,6 +223,21 @@ export default class ThreedObject extends kokomi.Component {
     this.container.add(this.mesh);
   }
   update() {
+    // 更新鼠标和射线投射器
+    this.raycaster.setFromCamera(this.mouse, this.base.camera);
+
+    // 检测球体是否被选中
+    const intersects = this.raycaster.intersectObject(this.mesh);
+
+    if (intersects.length > 0) {
+      // 如果鼠标悬停在球体上，触发事件
+      this.onMouseOver();
+    } else {
+      // 鼠标不在球体上
+      this.onMouseOut();
+    }
+
+    // 更新着色器参数并渲染
     this.uj.injectShadertoyUniforms(this.material.uniforms);
     this.composer.render();
   }
