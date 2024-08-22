@@ -5,11 +5,20 @@ import ObjectEnum from "@/Experience/ObjectEnum";
 import LoadingComp from "@/components/loadingComp";
 
 const Home: React.FC = () => {
-  useApplyShader({ id: "#home", objectEnum: ObjectEnum.BaseObject });
+  useApplyShader({
+    id: "#threed",
+    objectEnum: ObjectEnum.ThreedObject,
+    cameraPosition: {
+      x: 0,
+      y: 0,
+      z: 2.5,
+    },
+  });
+
   return (
     <>
       <LoadingComp />
-      <div id="home" className={styles["home"]} />
+      <div id="threed" className={styles["threed"]} />
     </>
   );
 };
