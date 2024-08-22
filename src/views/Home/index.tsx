@@ -10,8 +10,8 @@ const Home: React.FC = () => {
     objectEnum: ObjectEnum.ThreedObject,
     cameraPosition: {
       x: 0,
-      y: -1,
-      z: 3.5,
+      y: 0,
+      z: 2.5,
     },
   });
 

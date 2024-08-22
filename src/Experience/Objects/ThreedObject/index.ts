@@ -70,6 +70,9 @@ export default class ThreedObject extends kokomi.Component {
           threshold: 0.0,
         },
       },
+      iMouseManual: {
+        value: new THREE.Vector2(0, 0),
+      },
     };
 
     const colorParams = {
@@ -131,6 +134,9 @@ export default class ThreedObject extends kokomi.Component {
       ...material.uniforms,
       ...uj.shadertoyUniforms,
       ...params,
+      iMouseManual: {
+        value: new THREE.Vector2(0, 0),
+      },
       uThemeColor: {
         value: new THREE.Color(colorParams.themeColor),
       },
@@ -229,9 +235,11 @@ export default class ThreedObject extends kokomi.Component {
     // 检测球体是否被选中
     const intersects = this.raycaster.intersectObject(this.mesh);
 
-    if (intersects.length > 0) {
+    if (intersects.length > 0 && intersects[0].uv) {
       // 如果鼠标悬停在球体上，触发事件
       this.onMouseOver();
+      this.material.uniforms.iMouseManual.value.x = intersects[0].uv.x;
+      this.material.uniforms.iMouseManual.value.y = intersects[0].uv.y;
     } else {
       // 鼠标不在球体上
       this.onMouseOut();
