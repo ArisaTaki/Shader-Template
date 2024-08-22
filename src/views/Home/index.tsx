@@ -18,7 +18,7 @@ const Home: React.FC = () => {
   return (
     <>
       <LoadingComp />
-      <div id="threed" className={styles["threed"]} />
+      <div id="threed" className={styles["threed"]}></div>
     </>
   );
 };

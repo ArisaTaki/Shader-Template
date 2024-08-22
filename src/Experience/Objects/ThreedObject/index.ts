@@ -55,6 +55,9 @@ export default class ThreedObject extends kokomi.Component {
       lightColor2: "#9743fe",
     };
 
+    const RADIUS = 1.001;
+    const SEGMENTS = 512.001;
+
     // 初始化 EffectComposer
     this.composer = new EffectComposer(this.base.renderer);
 
@@ -79,9 +82,6 @@ export default class ThreedObject extends kokomi.Component {
     this.bloomPass.renderToScreen = true;
 
     this.base.scene.background = new THREE.Color(colorParams.themeColor);
-
-    const RADIUS = 1.001;
-    const SEGMENTS = 512.001;
 
     const geometry = new THREE.SphereGeometry(RADIUS, SEGMENTS, SEGMENTS);
     // const geometry = new THREE.PlaneGeometry(
