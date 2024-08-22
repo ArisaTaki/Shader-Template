@@ -32,7 +32,7 @@ export default class Experience extends kokomi.Base {
     // 把摄像机的位置设置给camera
     this.camera.position.copy(cameraPosition);
     // 添加轨道控制
-    new kokomi.OrbitControls(this);
+    // new kokomi.OrbitControls(this);
 
     // 挂载Experience类到全局
     window.experience = this;

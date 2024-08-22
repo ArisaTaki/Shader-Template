@@ -16,10 +16,10 @@ varying vec3 vNormal;
 varying vec3 vWorldPosition;
 vec3 distort(vec3 p){
     // simplex noise
-    float offset=snoise(p / uFrequency + iTime * 0.3);
+    // float offset=snoise(p / uFrequency + iTime * 0.3);
     
     // classic perlin noise
-    // float offset=cnoise(p / uFrequency + iTime * 0.3);
+    float offset=cnoise(p / uFrequency + iTime * 0.3);
 
     // periodic noise
     // vec3 repetition = vec3(10.0, 10.0, 10.0); // 设置pnoise噪声的重复周期
@@ -38,6 +38,7 @@ vec3 distort(vec3 p){
     p+=noise*normal*.01;
     return p;
 }
+
 
 #include "../../../CommonShaders/fixNormal.glsl"
 
