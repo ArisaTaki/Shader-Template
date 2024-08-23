@@ -238,8 +238,10 @@ export default class ThreedObject extends kokomi.Component {
     if (intersects.length > 0 && intersects[0].uv) {
       // 如果鼠标悬停在球体上，触发事件
       this.onMouseOver();
-      this.material.uniforms.iMouseManual.value.x = intersects[0].uv.x;
-      this.material.uniforms.iMouseManual.value.y = intersects[0].uv.y;
+      this.material.uniforms.iMouseManual.value.x = intersects[0].uv.x / 0.5;
+      this.material.uniforms.iMouseManual.value.y = intersects[0].uv.y / 1.0;
+
+      console.log(this.material.uniforms.iMouseManual.value);
     } else {
       // 鼠标不在球体上
       this.onMouseOut();

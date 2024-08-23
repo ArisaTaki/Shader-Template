@@ -4,7 +4,7 @@
 
 uniform float iTime;
 uniform vec3 iResolution;
-uniform vec4 iMouse;
+uniform vec2 iMouseManual;
 uniform vec3 uThemeColor;
 uniform vec3 uLightColor;
 uniform float uFresnelIntensity;
@@ -42,9 +42,15 @@ void main() {
     col = mix(col, uLightColor, diff*fres*uLightIntensity);
 
     // 第二道光
-    vec3 light2Pos = vec3(-10., -5., 10.);
+    // 鼠标控制第二光源的位置
+    // 将 iMouseManual.x 映射到光源的X轴和Y轴位置
+    vec3 light2Pos = vec3(
+        iMouseManual.x * 20.0 - 10.0, // 映射 X 轴到 [-10, 10]
+        iMouseManual.y * 10.0 - 5.0,  // 映射 Y 轴到 [-5, 5]
+        10.0                          // 保持 Z 轴不变
+    );
     float diff2 = max(dot(normal, normalize(light2Pos - vWorldPosition)), 0.);
-    col = mix(col, uLightColor2, diff2*fres*uLight2Intensity);
+    col = mix(col, uLightColor2, diff2 * fres * uLight2Intensity);
 
     // gama校正
     // 把这里注释掉的原因是因为要使用UnrealBloomPass滤镜
