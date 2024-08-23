@@ -15,9 +15,8 @@ vec3 distort(vec3 p){
     // classic perlin noise
     float offset=cnoise(p / uFrequency + iTime * 0.3);
 
-    float t=(p.y+offset)*PI*12.*iMouseManual.y;
-    float l=(p.x+offset)*PI*12.*iMouseManual.x;
-    float noise=(sin(t)*p.x+cos(l)*p.z)*2.;
+    float t=(p.y+offset)*PI*12.;
+    float noise=(sin(t)*p.x+cos(t)*p.z)*2.;
     noise*=uDistort;
     vNoise=noise;
     p+=noise*normal*.01;
