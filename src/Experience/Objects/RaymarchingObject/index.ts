@@ -10,7 +10,10 @@ export default class RaymarchingObject extends kokomi.Component {
   constructor(base: Experience) {
     super(base);
 
-    this.quad = new kokomi.ScreenQuad(this.base);
+    this.quad = new kokomi.ScreenQuad(this.base, {
+      fragmentShader: fragmentShader,
+      shadertoyMode: true,
+    });
   }
   addExisting() {
     this.quad.addExisting();
